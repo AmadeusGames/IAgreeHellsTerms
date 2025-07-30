@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Agree: Hell's Terms</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blood-red: #dc2626;
+      --dark-red: #991b1b;
+      --pitch-black: #0a0a0a;
+      --dark-gray: #1a1a1a;
+      --medium-gray: #2a2a2a;
+      --white: #ffffff;
+      --light-gray: #e5e7eb;
+      --gold: #fbbf24;
+      --green: #10b981;
+      --blue: #3b82f6;
+	  --purple: #8b5cf6;
+	  --orange: #f97316;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+     body {
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(ellipse at center, #1a0a0a 0%, #0a0a0a 70%, #000000 100%);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background particles - FIXED */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--blood-red), transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--gold), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--purple), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--orange), transparent);
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      animation: float 20s ease-in-out infinite;
+      opacity: 0.3;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Additional floating particles for more effect */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(1px 1px at 60px 20px, var(--gold), transparent),
+        radial-gradient(1px 1px at 120px 60px, var(--blood-red), transparent),
+        radial-gradient(2px 2px at 180px 100px, var(--purple), transparent);
+      background-repeat: repeat;
+      background-size: 250px 250px;
+      animation: floatReverse 25s ease-in-out infinite;
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 0.3;
+      }
+      25% { 
+        transform: translateY(-20px) translateX(10px) rotate(90deg);
+        opacity: 0.5;
+      }
+      50% { 
+        transform: translateY(-10px) translateX(-15px) rotate(180deg);
+        opacity: 0.2;
+      }
+      75% { 
+        transform: translateY(15px) translateX(20px) rotate(270deg);
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes floatReverse {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(360deg);
+        opacity: 0.2;
+      }
+      25% { 
+        transform: translateY(15px) translateX(-10px) rotate(270deg);
+        opacity: 0.4;
+      }
+      50% { 
+        transform: translateY(5px) translateX(20px) rotate(180deg);
+        opacity: 0.1;
+      }
+      75% { 
+        transform: translateY(-20px) translateX(-15px) rotate(90deg);
+        opacity: 0.3;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      background: linear-gradient(45deg, var(--blood-red), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+	  animation: pulse 3s ease-in-out infinite;
+    }
+	
+	@keyframes pulse {
+  0%, 100% { 
+    filter: brightness(1);
+    text-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+  }
+  50% { 
+    filter: brightness(1.2);
+    text-shadow: 0 0 40px rgba(220, 38, 38, 0.8);
+  }
+}
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--light-gray);
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      background: var(--medium-gray);
+      border-radius: 25px;
+      height: 20px;
+      margin: 2rem 0;
+      overflow: hidden;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blood-red), var(--gold));
+      border-radius: 25px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shine 2s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .progress-text {
+      /*text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--light-gray);*/
+	  
+	  font-size: 1rem;
+      color: var(--light-gray);
+      opacity: 0.8;
+      font-weight: 300;
+	  text-align: center;
+	   margin-bottom: 1.5rem;
+    }
+
+    /* Statistics */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--dark-gray), var(--medium-gray));
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blood-red), var(--gold));
+      transition: left 0.5s ease;
+    }
+
+    .stat-card:hover::before {
+      left: 0;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Orbitron', monospace;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--light-gray);
+      margin-top: 0.5rem;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: linear-gradient(145deg, var(--dark-gray), var(--medium-gray));
+      color: var(--white);
+      border: 2px solid var(--blood-red);
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);
+      border-color: var(--gold);
+    }
+
+    .btn:active {
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-generate {
+      border-color: var(--green);
+    }
+
+    .btn-expand {
+      border-color: var(--blue);
+    }
+
+    .btn-reset {
+      border-color: var(--blood-red);
+    }
+
+    /* Numbers Grid */
+    .numbers-container {
+      margin-bottom: 2rem;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .number {
+      background: linear-gradient(145deg, var(--dark-gray), var(--medium-gray));
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      border-radius: 12px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: 'Orbitron', monospace;
+      color: var(--gold);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.5s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .number:nth-child(even) {
+      animation-delay: 0.1s;
+    }
+
+    .number:nth-child(3n) {
+      animation-delay: 0.2s;
+    }
+
+    .number:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);
+      border-color: var(--gold);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Keyboard Shortcuts */
+    .shortcuts {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(26, 26, 26, 0.95);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.8rem;
+      backdrop-filter: blur(10px);
+      transition: opacity 0.3s ease;
+    }
+
+    .shortcuts h4 {
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .shortcut {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.2rem 0;
+	  gap: 0.5rem;
+    }
+
+    .key {
+      background: var(--blood-red);
+      color: var(--white);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, var(--dark-gray), var(--medium-gray));
+      margin: 15% auto;
+      padding: 2rem;
+      border: 2px solid var(--blood-red);
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal h3 {
+      color: var(--blood-red);
+      margin-bottom: 1rem;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+	
+	
+	 /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2.5rem;
+      border-top: 2px solid rgba(220, 38, 38, 0.4);
+      position: relative;
+    }
+
+    .footer-link {
+      font-family: 'Creepster', cursive;
+      color: var(--blood-red);
+      font-variant: small-caps;
+      font-size: 1.2rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(26, 26, 26, 0.5), rgba(42, 42, 42, 0.5));
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+	
+    .footer-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, var(--blood-red), var(--gold), var(--purple));
+      border-radius: 15px;
+      padding: 2px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.9));
+      border-radius: 13px;
+      z-index: -1;
+    }
+
+    .footer-link:hover::before {
+      opacity: 1;
+    }
+
+    .footer-link:hover {
+      transform: translateY(-8px) scale(1.1);
+      box-shadow: 
+        0 15px 40px rgba(220, 38, 38, 0.5),
+        0 0 30px rgba(251, 191, 36, 0.4);
+      color: var(--gold);
+      text-shadow: 0 0 20px var(--gold);
+    }
+	
+	
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0.5rem;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+
+      .shortcuts {
+        display: none;
+      }
+
+      .numbers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 0.5rem;
+      }
+
+      .number {
+        height: 60px;
+        font-size: 1rem;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top: 2px solid var(--white);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: linear-gradient(145deg, var(--green), #059669);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+	
+	
+	    /* Terms Agreement Section */
+    .terms-section {
+      background: linear-gradient(135deg, var(--dark-gray), var(--medium-gray));
+      border: 2px solid var(--blood-red);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terms-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blood-red), var(--gold), var(--purple));
+      animation: termsBorder 3s ease-in-out infinite;
+    }
+
+    @keyframes termsBorder {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .terms-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      color: var(--blood-red);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .terms-text {
+      font-size: 1rem;
+      color: var(--light-gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .custom-checkbox {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+    }
+
+    .custom-checkbox input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 30px;
+      width: 30px;
+      background: linear-gradient(145deg, var(--dark-gray), var(--medium-gray));
+      border: 2px solid var(--blood-red);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .checkmark:hover {
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+      transform: scale(1.1);
+    }
+
+    .custom-checkbox input:checked ~ .checkmark {
+      background: linear-gradient(145deg, var(--blood-red), var(--dark-red));
+      border-color: var(--gold);
+    }
+
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    .custom-checkbox input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    .custom-checkbox .checkmark:after {
+      left: 9px;
+      top: 5px;
+      width: 8px;
+      height: 15px;
+      border: solid var(--gold);
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+
+    .checkbox-label {
+      font-size: 1.1rem;
+      color: var(--white);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .checkbox-label:hover {
+      color: var(--gold);
+    }
+
+    .terms-warning {
+      font-size: 0.9rem;
+      color: var(--blood-red);
+      font-style: italic;
+      margin-top: 1rem;
+      opacity: 0.8;
+    }
+
+	
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="title" title="Acepto: Términos del Infierno">I Agree: Hell's Terms</h1>
+      <p class="subtitle" title="Por AmadeusGames">By AmadeusGames</p>
+    </header>
+	
+	 <!-- Terms Agreement Section -->
+  <div class="terms-section">
+  <h2 class="terms-title">
+    <i class="fas fa-fire"></i> 
+    <span title="Términos y Condiciones del Infierno">Hell's Terms & Conditions</span> 
+    <i class="fas fa-fire"></i>
+  </h2>
+  <p class="terms-text">
+    <span title="Al continuar, reconoces que tu alma puede estar sujeta a condenación eterna, apariciones sobrenaturales, y un inexplicable antojo de bocadillos con sabor a azufre. La gerencia no se hace responsable de posesiones demoníacas o combustión espontánea.">
+      By proceeding, you acknowledge that your soul may be subject to eternal damnation, 
+      supernatural hauntings, and an inexplicable craving for sulfur-flavored snacks. 
+      The management is not responsible for any demonic possessions or spontaneous combustion.
+    </span>
+  </p>
+  <div class="checkbox-container">
+    <label class="custom-checkbox">
+      <input type="checkbox" id="termsCheckbox">
+      <span class="checkmark"></span>
+    </label>
+    <label for="termsCheckbox" class="checkbox-label">
+      <span title="Acepto los Términos del Infierno y entrego mi alma">
+        I accept Hell's Terms and surrender my soul
+      </span>
+    </label>
+  </div>
+  <p class="terms-warning">
+    <i class="fas fa-exclamation-triangle"></i>
+    <span title="Advertencia: Esta casilla es falsa pero se veía bien.">
+      Warning: This box is fake but it looked good.
+    </span>
+  </p>
+</div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-text" id="progressText" title="0 / 30 números permitidos">0 / 30 numbers allowed <br></br></div>
+
+    <!-- Statistics -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="totalNumbers">0</div>
+        <div class="stat-label" title="Números permitidos">Numbers Allowed</div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="generateBtn" class="btn btn-generate" title="Generar">
+        <i class="fas fa-dice"></i>
+        <span>Generate (G)</span>
+      </button>
+      <button id="expandBtn" class="btn btn-expand" title="Expandir">
+        <i class="fas fa-plus"></i>
+        <span>Expand (E)</span>
+      </button>
+      <button id="resetBtn" class="btn btn-reset" title="Reiniciar">
+        <i class="fas fa-redo"></i>
+        <span>Reset (R)</span>
+      </button>
+    </div>
+
+    <!-- Numbers Grid -->
+    <div class="numbers-container">
+      <div class="numbers-grid" id="numbersGrid"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="https://amadeusgames.com" target="_blank" class="footer-link" title="AmadeusGames.com">
+        •😈 AmadeusGames.com 😈•
+      </a>
+    </footer>
+  </div>
+
+  <!-- Keyboard Shortcuts -->
+  <div class="shortcuts" id="shortcuts">
+    <h4 title="Atajos de teclado"><i class="fas fa-keyboard"></i> Shortcuts</h4>
+    <div class="shortcut">
+      <span title="Generar">Generate</span>
+      <span class="key">G</span>
+    </div>
+    <div class="shortcut">
+      <span title="Expandir">Expand</span>
+      <span class="key">E</span>
+    </div>
+    <div class="shortcut">
+      <span title="Resetear">Reset</span>
+      <span class="key">R</span>
+    </div>
+  </div>
+
+  <!-- Reset Confirmation Modal -->
+  <div id="resetModal" class="modal">
+    <div class="modal-content">
+      <h3><i class="fas fa-exclamation-triangle"></i> Confirm Reset</h3>
+      <p title="¿Estás seguro de que quieres eliminar todos los números generados?">Are you sure you want to delete all generated numbers?</p>
+      <div class="modal-buttons">
+        <button id="confirmReset" class="btn btn-reset" title="Sí, eliminar">
+          <i class="fas fa-check"></i>
+          Yes, delete
+        </button>
+        <button id="cancelReset" class="btn" title="Cancelar">
+          <i class="fas fa-times"></i>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div id="notification" class="notification">
+    <i class="fas fa-check"></i>
+    <span id="notificationText" title="¡Números generados exitosamente!">Numbers generated successfully!</span>
+  </div>
+
+  <script>
+    class NumberGenerator {
+      constructor() {
+        this.numbers = [];
+        this.maxNumbers = 50;
+        this.initialBatch = 30;
+        this.isLoading = false;
+        
+        this.initializeElements();
+        this.loadSavedNumbers();
+        this.setupEventListeners();
+        this.updateUI();
+      }
+
+      initializeElements() {
+        this.elements = {
+          generateBtn: document.getElementById('generateBtn'),
+          expandBtn: document.getElementById('expandBtn'),
+          resetBtn: document.getElementById('resetBtn'),
+          numbersGrid: document.getElementById('numbersGrid'),
+          progressBar: document.getElementById('progressBar'),
+          progressText: document.getElementById('progressText'),
+          totalNumbers: document.getElementById('totalNumbers'),
+          resetModal: document.getElementById('resetModal'),
+          confirmReset: document.getElementById('confirmReset'),
+          cancelReset: document.getElementById('cancelReset'),
+          notification: document.getElementById('notification'),
+          notificationText: document.getElementById('notificationText')
+        };
+      }
+
+      loadSavedNumbers() {
+        const saved = localStorage.getItem('hellNumbers');
+        if (saved) {
+          this.numbers = JSON.parse(saved);
+        }
+      }
+
+      saveNumbers() {
+        localStorage.setItem('hellNumbers', JSON.stringify(this.numbers));
+      }
+
+      setupEventListeners() {
+        // Button events
+        this.elements.generateBtn.addEventListener('click', () => this.generateNumbers());
+        this.elements.expandBtn.addEventListener('click', () => this.expandNumbers());
+        this.elements.resetBtn.addEventListener('click', () => this.showResetModal());
+        
+        // Modal events
+        this.elements.confirmReset.addEventListener('click', () => this.resetNumbers());
+        this.elements.cancelReset.addEventListener('click', () => this.hideResetModal());
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+          if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+          
+          switch(e.key.toLowerCase()) {
+            case 'g':
+              if (!this.elements.generateBtn.disabled) this.generateNumbers();
+              break;
+            case 'e':
+              if (!this.elements.expandBtn.disabled) this.expandNumbers();
+              break;
+            case 'r':
+              this.showResetModal();
+              break;
+          }
+        });
+
+        // Close modal on outside click
+        this.elements.resetModal.addEventListener('click', (e) => {
+          if (e.target === this.elements.resetModal) {
+            this.hideResetModal();
+          }
+        });
+      }
+
+      async generateNumbers() {
+        if (this.isLoading || this.numbers.length >= this.initialBatch) return;
+        
+        this.setLoading(this.elements.generateBtn, true);
+        
+        try {
+          const newNumbers = await this.fetchNumbers(2);
+          this.numbers = [...this.numbers, ...newNumbers];
+          this.saveNumbers();
+          this.updateUI();
+          this.showNotification('¡Numbers successfully generated!');
+        } catch (error) {
+          console.error('Error generating numbers:', error);
+          this.showNotification('Error al generar números', 'error');
+        } finally {
+          this.setLoading(this.elements.generateBtn, false);
+        }
+      }
+
+      async expandNumbers() {
+        if (this.isLoading || this.numbers.length >= this.maxNumbers) return;
+        
+        this.setLoading(this.elements.expandBtn, true);
+        
+        try {
+          const newNumbers = await this.fetchNumbers(2);
+          this.numbers = [...this.numbers, ...newNumbers];
+          this.saveNumbers();
+          this.updateUI();
+          this.showNotification('¡Numbers successfully expanded!');
+        } catch (error) {
+          console.error('Error expanding numbers:', error);
+          this.showNotification('Error al expandir números', 'error');
+        } finally {
+          this.setLoading(this.elements.expandBtn, false);
+        }
+      }
+
+      async fetchNumbers(count) {
+        // Generate random numbers from 1 to 50
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const newNumbers = [];
+            for (let i = 0; i < count; i++) {
+              let num;
+              do {
+                num = Math.floor(Math.random() * 50) + 1; // Numbers from 1 to 50
+              } while (this.numbers.includes(num) || newNumbers.includes(num));
+              newNumbers.push(num);
+            }
+            resolve(newNumbers);
+          }, 1000);
+        });
+      }
+
+      resetNumbers() {
+        localStorage.removeItem('hellNumbers');
+        this.numbers = [];
+        this.updateUI();
+        this.hideResetModal();
+        this.showNotification('¡Numbers successfully reset!');
+      }
+
+      setLoading(button, loading) {
+        this.isLoading = loading;
+        if (loading) {
+          button.innerHTML = '<div class="loading"><div class="spinner"></div><span>Loading...</span></div>';
+          button.disabled = true;
+        } else {
+          this.updateButtonStates();
+        }
+      }
+
+      updateUI() {
+        this.renderNumbers();
+        this.updateStats();
+        this.updateProgress();
+        this.updateButtonStates();
+      }
+
+      renderNumbers() {
+        this.elements.numbersGrid.innerHTML = '';
+        
+        this.numbers.forEach((num, index) => {
+          const numElement = document.createElement('div');
+          numElement.className = 'number';
+          numElement.textContent = num;
+          numElement.style.animationDelay = `${index * 0.05}s`;
+          this.elements.numbersGrid.appendChild(numElement);
+        });
+      }
+
+      updateStats() {
+        const count = this.numbers.length;
+        this.elements.totalNumbers.textContent = count;
+      }
+
+      updateProgress() {
+		const progress = (this.numbers.length / this.maxNumbers) * 130;
+		this.elements.progressBar.style.width = `${progress}%`;
+		this.elements.progressText.textContent = `${this.numbers.length} / ${this.maxNumbers} Total numbers`;
+		this.elements.progressText.title = `${this.numbers.length} / ${this.maxNumbers} Números totales`;
+	  }
+
+      updateButtonStates() {
+        // Generate button
+        this.elements.generateBtn.disabled = this.numbers.length >= this.initialBatch;
+        if (!this.elements.generateBtn.disabled) {
+          this.elements.generateBtn.innerHTML = '<i class="fas fa-dice"></i><span>Generate (G)</span>';
+        }
+        
+        // Expand button
+        this.elements.expandBtn.disabled = this.numbers.length >= this.maxNumbers || this.numbers.length < this.initialBatch;
+        this.elements.expandBtn.style.display = this.numbers.length >= this.initialBatch ? 'flex' : 'none';
+        if (!this.elements.expandBtn.disabled) {
+          this.elements.expandBtn.innerHTML = '<i class="fas fa-plus"></i><span>Expand if the devil allows you (E)</span>';
+        }
+      }
+	  
+  
+      showResetModal() {
+        this.elements.resetModal.style.display = 'block';
+      }
+
+      hideResetModal() {
+        this.elements.resetModal.style.display = 'none';
+      }
+
+      showNotification(message, type = 'success') {
+        this.elements.notificationText.textContent = message;
+        this.elements.notification.classList.add('show');
+        
+        setTimeout(() => {
+          this.elements.notification.classList.remove('show');
+        }, 3000);
+      }
+    }
+
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', () => {
+      new NumberGenerator();
+    });
+  </script>
+</body>
+</html>
