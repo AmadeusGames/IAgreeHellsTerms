@@ -488,7 +488,7 @@
       font-family: 'Creepster', cursive;
       color: var(--blood-red);
       font-variant: small-caps;
-      font-size: 1.2rem;
+      font-size: 1rem;
       text-decoration: none;
       display: inline-block;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -574,7 +574,8 @@
       }
 
       .stats {
-        grid-template-columns: repeat(2, 1fr);
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		justify-content: center;
       }
     }
 
@@ -747,6 +748,7 @@
       margin-top: 1rem;
       opacity: 0.8;
     }
+
 
 	
   </style>
