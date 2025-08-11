@@ -808,6 +808,19 @@
       </div>
     </div>
 
+
+<!-- Selector de configuración -->
+<div style="text-align:center; margin-bottom:1rem;">
+  <label for="configSelect" style="margin-right:0.5rem;">Card:</label>
+  <select id="configSelect">
+    <option value="K001">K001</option>
+    <option value="K002">K002</option>
+    <option value="K003">K003</option>
+    <option value="K004">K004</option>
+    <option value="K005" selected>K005</option>
+  </select>
+</div>
+
     <!-- Controls -->
     <div class="controls">
       <button id="generateBtn" class="btn btn-generate" title="Generar">
@@ -894,6 +907,7 @@
 
       initializeElements() {
         this.elements = {
+          configSelect: document.getElementById('configSelect'),
           generateBtn: document.getElementById('generateBtn'),
           expandBtn: document.getElementById('expandBtn'),
           resetBtn: document.getElementById('resetBtn'),
@@ -953,6 +967,21 @@
             this.hideResetModal();
           }
         });
+        // Cambio de configuración K001-K005 (solo afecta initialBatch)
+        this.elements.configSelect.addEventListener('change', () => {
+          const configs = {
+            K001: 50,
+            K002: 46,
+            K003: 40,
+            K004: 36,
+            K005: 30
+          };
+          this.initialBatch = configs[this.elements.configSelect.value];
+          this.updateUI();
+        });
+        // Inicializar al cargar
+        this.elements.configSelect.dispatchEvent(new Event('change'));
+
       }
 
       async generateNumbers() {
@@ -1053,7 +1082,7 @@
       }
 
       updateProgress() {
-		const progress = (this.numbers.length / this.maxNumbers) * 130;
+		const progress = (this.numbers.length / this.maxNumbers) * 100;
 		this.elements.progressBar.style.width = `${progress}%`;
 		this.elements.progressText.textContent = `${this.numbers.length} / ${this.maxNumbers} Total numbers`;
 		this.elements.progressText.title = `${this.numbers.length} / ${this.maxNumbers} Números totales`;
@@ -1066,11 +1095,16 @@
           this.elements.generateBtn.innerHTML = '<i class="fas fa-dice"></i><span>Generate (G)</span>';
         }
         
-        // Expand button
-        this.elements.expandBtn.disabled = this.numbers.length >= this.maxNumbers || this.numbers.length < this.initialBatch;
-        this.elements.expandBtn.style.display = this.numbers.length >= this.initialBatch ? 'flex' : 'none';
-        if (!this.elements.expandBtn.disabled) {
-          this.elements.expandBtn.innerHTML = '<i class="fas fa-plus"></i><span>Expand if the devil allows you (E)</span>';
+        // Expand button adaptado a K00x
+        if (this.initialBatch === this.maxNumbers) {
+          // En K001 no se muestra botón expandir
+          this.elements.expandBtn.style.display = 'none';
+        } else {
+          this.elements.expandBtn.disabled = this.numbers.length >= this.maxNumbers || this.numbers.length < this.initialBatch;
+          this.elements.expandBtn.style.display = this.numbers.length >= this.initialBatch ? 'flex' : 'none';
+          if (!this.elements.expandBtn.disabled) {
+            this.elements.expandBtn.innerHTML = '<i class="fas fa-plus"></i><span>Expand if the devil allows you (E)</span>';
+          }
         }
       }
 	  
